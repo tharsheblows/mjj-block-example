@@ -1,0 +1,95 @@
+# Copyright (C) 2021 JJ
+# This file is distributed under the same license as the Porchy Block Example plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Porchy Block Example 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mjj-block-example\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-01-25T11:19:21+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: porchy\n"
+
+#. Plugin Name of the plugin
+msgid "Porchy Block Example"
+msgstr ""
+
+#. Description of the plugin
+msgid "An example of using a block scaffold"
+msgstr ""
+
+#. Author of the plugin
+msgid "JJ"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.php:47
+msgid "Untitled"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/edit.js:53
+msgid "Posts List Block"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/edit.js:58
+msgid "No posts found."
+msgstr ""
+
+#: src/blocks/dynamic-postslist/edit.js:98
+msgid "(Untitled)"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.js:24
+msgid "Posts List"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.js:25
+msgid "Display posts list with defined number of items to be shown."
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.js:31
+msgid "posts"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.js:32
+msgid "post"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/index.js:33
+msgid "blog"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/inspector.js:21
+msgid "Post Settings"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/inspector.js:23
+msgid "Number of posts"
+msgstr ""
+
+#: src/blocks/dynamic-postslist/inspector.js:24
+msgid "Change the number of posts displayed."
+msgstr ""
+
+#: src/blocks/regular-container/index.js:25
+msgid "Container"
+msgstr ""
+
+#: src/blocks/regular-container/index.js:26
+msgid "Provide custom container."
+msgstr ""
+
+#: src/blocks/regular-container/index.js:29
+msgid "container"
+msgstr ""
+
+#: src/blocks/regular-container/index.js:30
+msgid "wrapper"
+msgstr ""
+
+#: src/blocks/regular-container/index.js:31
+msgid "section"
+msgstr ""
