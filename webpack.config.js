@@ -8,7 +8,7 @@ try {
 	localEnv = require( './local.json' ).devURL;
 } catch ( err ) {
 	// Fallback if it does not
-	localEnv = 'https://iceberg.test';
+	localEnv = 'https://idontthink.test';
 }
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
 		new BrowserSyncPlugin(
 			{
 				host: 'localhost',
-				port: 3000,
+				port: 3123, // You can change this if port 3000 is in use.
 				proxy: localEnv,
 				open: true,
 				files: [ 'build/*.php', 'build/*.js', 'build/*.css' ],
