@@ -15,11 +15,10 @@
 import { registerBlockType } from '@wordpress/blocks';
 
 // Register Blocks
-import * as postslists from './dynamic-postslist';
-import * as container from './regular-container';
+import * as clickgame from './click-game';
 
 export function registerBlocks() {
-	[ postslists, container ].forEach( ( block ) => {
+	[ clickgame ].forEach( ( block ) => {
 		if ( ! block ) {
 			// return;
 		}

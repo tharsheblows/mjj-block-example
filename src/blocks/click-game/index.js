@@ -8,7 +8,6 @@ import { __ } from '@wordpress/i18n';
  */
 import metadata from './block.json';
 import Edit from './edit';
-import Save from './save';
 
 /**
  * Style dependencies
@@ -22,17 +21,22 @@ import './style.scss';
 const { name, category, attributes, supports } = metadata;
 
 const settings = {
-	title: __( 'Container', 'porchy' ),
-	description: __( 'Provide custom container.', 'porchy' ),
-	icon: 'editor-kitchensink',
+	title: __( 'Porchy Click Game', 'porchy' ),
+	description: __(
+		'The circle click game',
+		'porchy'
+	),
+	icon: 'excerpt-view',
 	keywords: [
-		__( 'container', 'porchy' ),
-		__( 'wrapper', 'porchy' ),
-		__( 'section', 'porchy' ),
+		__( 'posts', 'porchy' ),
+		__( 'post', 'porchy' ),
+		__( 'blog', 'porchy' ),
 	],
 	attributes,
 	supports,
 	edit: Edit,
-	save: Save,
+	save() {
+		return null;
+	},
 };
 export { name, category, settings };
