@@ -8,7 +8,8 @@ import { Fragment } from '@wordpress/element'
  * Internal dependencies
  */
 import Game from './components/game'
-import Inspector from './inspector';
+import Inspector from './inspector'
+import metadata from './block.json'
 
 /**
  * Block edit function
@@ -21,11 +22,6 @@ function Edit( props ) {
 		className,
 		clientId,
 	} = props
-
-	const {
-		minTime,
-		maxTime
-	} = attributes
 
 	// Use the clientId as a unique id for the block. This will be saved the first time the block is added.
 	const getBlockId =
@@ -45,22 +41,24 @@ function Edit( props ) {
 		<Fragment>
 			{ isSelected && <Inspector { ...props } /> }
 			<div
-				className={ `porchy-click-game ${ className }` }
+				className={ `porchy clickgame ${ className }` }
 				id={ `porchy-cid-${ getBlockId }` }
 			>
 				{ ! isSelected && (
 					<Game
-						minTime={ minTime }
-						maxTime={ maxTime }
-						playable="no"
+						attr={ {
+							...attributes,
+							playable: 'no',
+						} }
 					/>
 				) }
 				{ isSelected && (
 					<Fragment>
 						<Game
-							minTime={ minTime }
-							maxTime={ maxTime }
-							playable="yes"
+							attr={ {
+								...attributes,
+								playable: 'yes',
+							} }
 						/>
 					</Fragment>
 				) }

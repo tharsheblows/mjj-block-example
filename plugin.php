@@ -29,6 +29,7 @@ function load_textdomain() {
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\load_textdomain', 99 );
 
+
 /**
  * Enqueue localization data for our blocks.
  *
@@ -93,7 +94,7 @@ function editor_assets() {
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\editor_assets' );
 
 /**
- * Get asset file.
+ * Get editor asset file.
  *
  * @param string $handle Asset handle to reference.
  * @param string $key What do we want to return: version or dependencies.
@@ -121,6 +122,41 @@ foreach ( glob( dirname( __FILE__ ) . '/src/blocks/*/index.php' ) as $block_logi
 	require_once $block_logic;
 }
 
+function front_end_scripts() {
+	wp_enqueue_script(
+		'porchy-mjj-block-example-frontend',
+		plugins_url( '/dist/front.bundle.js', __FILE__ ),
+		front_end_asset_file( 'front.bundle', 'dependencies' ),
+		front_end_asset_file( 'front.bundle', 'version' ),
+		true
+	);
+}
+add_action( 'init', __NAMESPACE__ . '\front_end_scripts' );
+
+/**
+ * Get asset file.
+ *
+ * @param string $handle Asset handle to reference.
+ * @param string $key What do we want to return: version or dependencies.
+ */
+function front_end_asset_file( $handle, $key ) {
+	$default_asset_file = array(
+		'dependencies' => array(),
+		'version'      => '1.0',
+	);
+
+	$asset_filepath = plugin_dir_path( __FILE__ ) . "/dist/{$handle}.asset.php";
+	$asset_file     = file_exists( $asset_filepath ) ? include $asset_filepath : $default_asset_file;
+
+	if ( 'version' === $key ) {
+		return $asset_file['version'];
+	}
+
+	if ( 'dependencies' === $key ) {
+		return $asset_file['dependencies'];
+	}
+}
+
 /**
  * Hijack the rendering of these blocks, making a div which we will fill with our little app.
  *
@@ -146,3 +182,63 @@ function hijack_render_blocks( $render, $block ){
 	return $render;
 }
 add_filter( 'render_block',  __NAMESPACE__ . '\hijack_render_blocks', 10, 2 );
+
+
+/**
+ * Below this is Gatsby specific stuff so that I can have these blocks get through my GraphQL request unrendered.
+ */
+
+/**
+ * This keeps the blocks whose names start with "mjj-why" ie the blocks in this plugin from being rendered with render_block().
+ * The reason to keep them in their block form is for use on a React based front end.
+ *
+ * @param bool  $prerender If it's a falsey value, the render_block function will proceed. Anything truthy will shortcircuit it.
+ * @param array $block The block being run through render_block().
+ * @return false|string
+ */
+function porchy_keep_unrendered_block( $prerender, $block ) {
+
+	// Get the blockname and check if it's from this plugin or the other plugin using this. This is not sustainable, sigh.
+	$blockname = $block['blockName'];
+	if ( substr( $blockname, 0, 6 ) !== 'porchy' ) {
+		return $prerender; // If it's not a plugin block, continue on with render_block().
+	}
+
+	// Copying from render_block().
+	$content = '';
+	$index         = 0;
+	foreach ( $block['innerContent'] as $chunk ) {
+		// If the innerContent is a string, set that to the content otherwise run through render_block() to render the inner blocks.
+		$content .= ( is_string( $chunk ) ) ? $chunk : render_block( $block['innerBlocks'][ $index++ ] );
+	}
+
+	$block['innerContent'] = $content;
+	// Serialize the block back into the string whence it began.
+	return serialize_block( $block );
+}
+
+/**
+ * I only want to keep these blocks in their original form on the graphql endpoint.
+ * This is from (ish): https://www.wpgraphql.com/2019/01/30/preventing-unauthenticated-requests-to-your-wpgraphql-api/.
+ * @param string $query Maybe it's a string. The query.
+ * @return void
+ */
+function porchy_is_graphql_request( $query ){
+	// If it's not a graphql request then bail.
+	if ( ! defined( 'GRAPHQL_HTTP_REQUEST' ) || true !== GRAPHQL_HTTP_REQUEST ) {
+		return;
+	}
+
+	$introspection_query = \GraphQL\Type\Introspection::getIntrospectionQuery();
+	$is_introspection_query = trim($query) === trim( $introspection_query );
+
+	// If it's an introspection query, bails.
+	if ( $is_introspection_query ) {
+		return;
+	}
+
+	// Ok, now add the prerender filter.
+	add_filter( 'pre_render_block', __NAMESPACE__ . '\porchy_keep_unrendered_block', 10, 2 );
+}
+add_action( 'do_graphql_request', __NAMESPACE__ . '\porchy_is_graphql_request', 10, 1 );
+

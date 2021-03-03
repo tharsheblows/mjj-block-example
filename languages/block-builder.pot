@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-01-25T11:19:21+00:00\n"
+"POT-Creation-Date: 2021-03-03T10:35:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: porchy\n"
@@ -26,70 +26,91 @@ msgstr ""
 msgid "JJ"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.php:47
-msgid "Untitled"
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/click-circle.js:10
+msgid "Running"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/edit.js:53
-msgid "Posts List Block"
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/click-circle.js:14
+msgid "Lost"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/edit.js:58
-msgid "No posts found."
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/click-circle.js:18
+msgid "Won"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/edit.js:98
-msgid "(Untitled)"
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/click-circle.js:22
+msgid "Timed out"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.js:24
-msgid "Posts List"
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/click-circle.js:26
+msgid "Start"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.js:25
-msgid "Display posts list with defined number of items to be shown."
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/game.js:28
+msgid "Click to edit. Min time: %d Max time: %d"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.js:31
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/game.js:34
+msgid "Click to start, click again in %d to %d seconds to win."
+msgstr ""
+
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/game.js:54
+msgid "You won! You clicked after %f seconds."
+msgstr ""
+
+#: dist/front.bundle.js:1
+#: src/blocks/click-game/components/game.js:62
+msgid "You lost! You clicked after %f seconds."
+msgstr ""
+
+#: src/blocks/click-game/index.js:24
+msgid "Porchy Click Game"
+msgstr ""
+
+#: src/blocks/click-game/index.js:25
+msgid "The circle click game"
+msgstr ""
+
+#: src/blocks/click-game/index.js:31
 msgid "posts"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.js:32
+#: src/blocks/click-game/index.js:32
 msgid "post"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/index.js:33
+#: src/blocks/click-game/index.js:33
 msgid "blog"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/inspector.js:21
-msgid "Post Settings"
+#: src/blocks/click-game/inspector.js:20
+msgid "Game Settings"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/inspector.js:23
-msgid "Number of posts"
+#: src/blocks/click-game/inspector.js:21
+msgid "If you put in a larger minimum time than maximum time, I'll swap them around so the min is the max and vice versa. 😊"
 msgstr ""
 
-#: src/blocks/dynamic-postslist/inspector.js:24
-msgid "Change the number of posts displayed."
+#: src/blocks/click-game/inspector.js:23
+msgid "Minimum time"
 msgstr ""
 
-#: src/blocks/regular-container/index.js:25
-msgid "Container"
+#: src/blocks/click-game/inspector.js:24
+msgid "If the circle is clicked before this, the user will lose."
 msgstr ""
 
-#: src/blocks/regular-container/index.js:26
-msgid "Provide custom container."
+#: src/blocks/click-game/inspector.js:36
+msgid "Maximum time"
 msgstr ""
 
-#: src/blocks/regular-container/index.js:29
-msgid "container"
-msgstr ""
-
-#: src/blocks/regular-container/index.js:30
-msgid "wrapper"
-msgstr ""
-
-#: src/blocks/regular-container/index.js:31
-msgid "section"
+#: src/blocks/click-game/inspector.js:37
+msgid "If the circle is clicked after this, the user will lose."
 msgstr ""

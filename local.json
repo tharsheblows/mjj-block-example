@@ -1,1 +1,4 @@
-{ "devURL": "https://idontthink.test/wp-admin/post.php?post=154&action=edit" }
+{
+	"adminURL": "https://idontthink.test/wp-admin/post.php?post=154&action=edit",
+	"frontEndURL":  "https://idontthink.test/test-post/"
+}

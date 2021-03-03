@@ -8,14 +8,19 @@ import { sprintf, __ } from '@wordpress/i18n'
  * Internal dependencies
  */
 import ClickCircle from './click-circle'
+import metadata from '../block.json';
 
 function Game ( props ) {
 
-	const { minTime, maxTime, playable } = props
+	const { minTime, maxTime, playable } = props.attr
 
-		// If min and max are not correct, swap them.
-	const min = maxTime > minTime ? parseInt(minTime) : parseInt(maxTime)
-	const max = maxTime > minTime ? parseInt( maxTime ) : parseInt( minTime )
+	// The defaults don't automatically default on the front end, so need to be explicitly set.
+	const maybeMin = ( minTime ) || metadata.attributes.minTime.default
+	const maybeMax = ( maxTime ) || metadata.attributes.maxTime.default
+
+	// Check if we need to swap these around.
+	const min = maybeMax > maybeMin ? parseInt( maybeMin ) : parseInt( maybeMax )
+	const max = maybeMax > maybeMin ? parseInt( maybeMax ) : parseInt( maybeMin )
 
 	// Allows use in the editor.
 	const defaultStatus = ( playable === 'no' ) ?
